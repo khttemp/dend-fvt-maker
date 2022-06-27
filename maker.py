@@ -3,6 +3,7 @@
 import struct
 import random
 import os
+import codecs
 from tkinter import *
 from tkinter import filedialog as fd
 from tkinter import ttk
@@ -264,9 +265,14 @@ def fvtConvert(file_path):
     global errorMsg
     global fvtList
 
-    f = open(file_path)
-    lines = f.readlines()
-    f.close()
+    try:
+        f = open(file_path)
+        lines = f.readlines()
+        f.close()
+    except:
+        f = codecs.open(file_path, "r", "utf-8", "ignore")
+        lines = f.readlines()
+        f.close()
 
     lines.pop(0)
 
