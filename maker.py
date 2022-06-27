@@ -160,14 +160,20 @@ class descWidget():
     global content
     
     def __init__(self, frame):
-        self.csvNumLb = Label(frame, text="FVT番号：FVT番号を指定する", font=("", 20), width=70, anchor="w")
-        self.csvNumLb.grid(row=0, column=0, sticky=W+E)
+        fontSize = 14
+        self.faceNumLb = Label(frame, text="FACE番号", font=("", fontSize), anchor="w", borderwidth=1, relief="solid")
+        self.faceNumLb.grid(row=0, column=0, sticky=N+S+W+E)
+        self.faceNumDescLb = Label(frame, text="FACEのイメージファイルの番号を指定する。\n0を指定すれば画像なし", font=("", fontSize), width=44, borderwidth=1, relief="solid", anchor="w", justify="left")
+        self.faceNumDescLb.grid(row=0, column=1, sticky=W+E)
 
-        self.faceNumLb = Label(frame, text="FACE番号：FACEのイメージファイルの番号を指定する。", font=("", 20), anchor="w")
-        self.faceNumLb.grid(row=1, column=0, sticky=W+E)
+        self.faceSizeLb = Label(frame, text="FACEサイズ", font=("", fontSize), anchor="w", borderwidth=1, relief="solid")
+        self.faceSizeLb.grid(row=1, column=0, sticky=N+S+W+E)
+        self.faceSizeDescLb = Label(frame, text="切り取り方法は右の図を参照。\nデフォは[-1,-1,-1,-1]", font=("", 16), borderwidth=1, relief="solid", anchor="w", justify="left")
+        self.faceSizeDescLb.grid(row=1, column=1, sticky=W+E)
 
+        self.effectLb = Label(frame, text="効果", font=("", fontSize), anchor="w", borderwidth=1, relief="solid")
+        self.effectLb.grid(row=2, column=0, sticky=N+S+W+E)
         effectText = ""
-        effectText += "効果\n"
         effectText += "0（普通【ゲームの速度に合わせて】）\n"
         effectText += "1（揺らす【ゲームの速度に合わせて】）\n"
         effectText += "2（下から出る【LSのみ使われた】）\n"
@@ -176,14 +182,21 @@ class descWidget():
         effectText += "5（画像がもっと下の位置）\n"
         effectText += "6（画面の中央から現れる【LSのみ使われた】）\n"
         effectText += "7（揺らす）"
-        self.effectLb = Label(frame, text=effectText, font=("", 20), anchor="w", justify="left")
-        self.effectLb.grid(row=2, column=0, sticky=W+E)
+        self.effectDescLb = Label(frame, text=effectText, font=("", fontSize), anchor="w", borderwidth=1, relief="solid", justify="left")
+        self.effectDescLb.grid(row=2, column=1, sticky=W+E)
 
-        self.voiceNumLb = Label(frame, text="VO番号：VOの音声ファイルの番号を指定する。", font=("", 20), anchor="w")
-        self.voiceNumLb.grid(row=3, column=0, sticky=W+E)
+        self.voiceLb = Label(frame, text="VO番号", font=("", fontSize), anchor="w", borderwidth=1, relief="solid")
+        self.voiceLb.grid(row=3, column=0, sticky=N+S+W+E)
+        self.voiceDescLb = Label(frame, text="VOの音声ファイルの番号を指定する。\n0を指定すれば音声なし", font=("", fontSize), anchor="w", borderwidth=1, relief="solid", justify="left")
+        self.voiceDescLb.grid(row=3, column=1, sticky=W+E)
 
-        self.txtLb = Label(frame, text="テキストのタグ", font=("", 20), anchor="w")
+        self.txtLb = Label(frame, text="テキストの\nタグ", font=("", fontSize), anchor="w", borderwidth=1, relief="solid")
         self.txtLb.grid(row=4, column=0, sticky=W+E)
+        self.txtDescLb = Label(frame, text="<BR>、<PAGE>、<WAIT120>\n<FC#255016000></FC>などなど・・・", font=("", fontSize), anchor="w", borderwidth=1, relief="solid", justify="left")
+        self.txtDescLb.grid(row=4, column=1, sticky=W+E)
+
+        self.padding = Label(frame, width=33, font=("", fontSize), anchor="w", borderwidth=1)
+        self.padding.grid(row=0, column=2, sticky=N+W+E)
 
         if content > LS:
             self.canvas = Canvas(frame, bg="white", width=300, height=300)
