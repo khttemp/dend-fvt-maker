@@ -182,7 +182,7 @@ class descWidget():
         effectText += "4（揺らす）\n"
         effectText += "5（画像がもっと下の位置）\n"
         effectText += "6（画面の中央から現れる【LSのみ使われた】）\n"
-        effectText += "7（揺らす）"
+        effectText += "7（普通）"
         self.effectDescLb = Label(frame, text=effectText, font=("", fontSize), anchor="w", borderwidth=1, relief="solid", justify="left")
         self.effectDescLb.grid(row=2, column=1, sticky=W+E)
 
