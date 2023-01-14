@@ -1,6 +1,5 @@
 import random
 import os
-import sys
 import codecs
 import tkinter
 
@@ -11,7 +10,7 @@ RS = 3
 
 
 def resource_path(relative_path):
-    return os.path.join(os.path.dirname(__file__), relative_path)
+    return os.path.join(os.path.dirname(__file__), "resource", relative_path)
 
 
 class CsvWidget():

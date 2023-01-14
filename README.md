@@ -103,7 +103,7 @@ pyinstaller か Nuitka ライブラリをインストールする。 pip でも 
 下は、 Nuitka を使用して、Windows 版実行バイナリ（ .exeファイル ）を作る例である。
 
 ````
-> nuitka --mingw64 --onefile --enable-plugin=tk-inter --follow-imports --remove-output --disable-console --include-data-file="./resource/*=./importPy/" maker.py
+> nuitka --mingw64 --onefile --enable-plugin=tk-inter --follow-imports --remove-output --disable-console --include-data-file="./importPy/resource/*=./importPy/resource/" maker.py
 ````
 
 maker.exe が出力される。
