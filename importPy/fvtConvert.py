@@ -6,19 +6,20 @@ BS = 1
 CS = 2
 RS = 3
 
+
 class FvtConvert:
     def __init__(self, filePath, content):
         self.filePath = filePath
         self.error = ""
         self.content = content
         self.fvtList = []
-        
+
     def open(self):
         try:
             f = open(self.filePath)
             lines = f.readlines()
             f.close()
-        except:
+        except Exception:
             f = codecs.open(self.filePath, "r", "utf-8", "ignore")
             lines = f.readlines()
             f.close()
@@ -34,7 +35,7 @@ class FvtConvert:
 
             try:
                 fvtNum = int(arr[0])
-                fvtNumList = [ d["fvtNum"] for d in self.fvtList ]
+                fvtNumList = [d["fvtNum"] for d in self.fvtList]
                 if fvtNum in fvtNumList:
                     self.error = "重複してるFVT番号があります[ {0} ]".format(fvtNum)
                     return False
@@ -50,13 +51,13 @@ class FvtConvert:
 
                 effect = int(arr[contentCnt + 2])
                 voNum = int(arr[contentCnt + 3])
-            except:
+            except Exception:
                 self.error = "{0}行に数字で変換できない要素があります".format(cnt)
                 return False
-            
+
             try:
                 text = arr[contentCnt + 4].encode("shift-jis")
-            except:
+            except Exception:
                 self.error = "{0}行のテキストをShift-jis変換できません".format(cnt)
                 return False
 
@@ -84,7 +85,7 @@ class FvtConvert:
             newLine.extend(struct.pack("<h", len(text)))
             newLine.extend(text)
 
-            fvtInfo = {"fvtNum":fvtNum, "info":newLine}
+            fvtInfo = {"fvtNum": fvtNum, "info": newLine}
             self.fvtList.append(fvtInfo)
 
         return True

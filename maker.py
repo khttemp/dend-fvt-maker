@@ -2,14 +2,14 @@
 
 import traceback
 
-from tkinter import *
-from tkinter import filedialog as fd
+import tkinter
 from tkinter import ttk
+from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 
-from importPy.tkinterScrollbarFrameClass import *
-from importPy.tkinterWidgetClass import *
-from importPy.fvtConvert import *
+from importPy.tkinterScrollbarFrameClass import ScrollbarFrame
+from importPy.tkinterWidgetClass import CsvWidget, DescWidget
+from importPy.fvtConvert import FvtConvert
 
 content = -1
 fvtConvertFile = None
@@ -18,6 +18,7 @@ LS = 0
 BS = 1
 CS = 2
 RS = 3
+
 
 def openFile():
     global fvtConvertFile
@@ -42,11 +43,12 @@ def openFile():
             try:
                 fvtConvertFile.write()
                 mb.showinfo(title="成功", message="全てのリストを書込みしました")
-            except Exception as e:
+            except Exception:
                 f = open("error_log.txt", "w")
                 f.write(traceback.format_exc())
                 f.close()
                 mb.showerror(title="保存エラー", message="予想外のエラーです。変換失敗しました")
+
 
 def selectGame():
     global csvLf
@@ -60,6 +62,7 @@ def selectGame():
     frame2 = ScrollbarFrame(descLf)
     DescWidget(frame2.frame, content)
 
+
 def deleteWidget():
     global csvLf
     global descLf
@@ -70,28 +73,29 @@ def deleteWidget():
     children = descLf.winfo_children()
     for child in children:
         child.destroy()
-        
-root = Tk()
+
+
+root = tkinter.Tk()
 root.title("電車でD FVT作成 1.0.1")
 root.geometry("1024x768")
 
-menubar = Menu(root)
-menubar.add_cascade(label='ファイルを開く', command= lambda: openFile())
+menubar = tkinter.Menu(root)
+menubar.add_cascade(label='ファイルを開く', command=lambda: openFile())
 root.config(menu=menubar)
 
-v_radio = IntVar()
+v_radio = tkinter.IntVar()
 v_radio.set(-1)
 
-lsRb = Radiobutton(root, text="Lightning Stage", command = selectGame, variable=v_radio, value=LS)
+lsRb = tkinter.Radiobutton(root, text="Lightning Stage", command=selectGame, variable=v_radio, value=LS)
 lsRb.place(relx=0.05, rely=0.03)
 
-bsRb = Radiobutton(root, text="Burning Stage", command = selectGame, variable=v_radio, value=BS)
+bsRb = tkinter.Radiobutton(root, text="Burning Stage", command=selectGame, variable=v_radio, value=BS)
 bsRb.place(relx=0.3, rely=0.03)
 
-csRb = Radiobutton(root, text="Climax Stage", command = selectGame, variable=v_radio, value=CS)
+csRb = tkinter.Radiobutton(root, text="Climax Stage", command=selectGame, variable=v_radio, value=CS)
 csRb.place(relx=0.55, rely=0.03)
 
-rsRb = Radiobutton(root, text="Rising Stage", command = selectGame, variable=v_radio, value=RS)
+rsRb = tkinter.Radiobutton(root, text="Rising Stage", command=selectGame, variable=v_radio, value=RS)
 rsRb.place(relx=0.8, rely=0.03)
 
 csvLf = ttk.LabelFrame(root, text="CSVの様式（CSVの1行目はヘッダー扱いになり、読み込みを省略する）")
