@@ -34,7 +34,7 @@ Issue に上げられたバグ情報が必ず修正されるものではない�
 
 ## 実行方法
 
-![title](https://github.com/khttemp/dend-fvt-maker/blob/master/image/title.png)
+![title](https://github.com/khttemp/dend-fvt-maker/blob/main/image/title.png)
 
 1. ラジオボタンで、ゲームを選ぶ。
 
@@ -110,6 +110,6 @@ maker.exe が出力される。
 
 ### Virustotal
 
-![virustotal](https://github.com/khttemp/dend-fvt-maker/blob/master/image/virustotal.png)
+![virustotal](https://github.com/khttemp/dend-fvt-maker/blob/main/image/virustotal.png)
 
 以上。
